@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>ee6a20b5-c42e-46bd-80ff-732cf4a8ccb2</ProjectGuid>
+    <ProjectGuid>9a386018-d20d-4525-bd4d-532b8810eea9</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Gato.py</StartupFile>
+    <StartupFile>Multiplicacion.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Gato</Name>
-    <RootNamespace>Gato</RootNamespace>
+    <Name>Multiplicacion</Name>
+    <RootNamespace>Multiplicacion</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Gato.py" />
+    <Compile Include="Multiplicacion.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

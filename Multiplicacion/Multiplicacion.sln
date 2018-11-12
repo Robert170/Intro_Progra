@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Gato", "Gato\Gato.pyproj", "{EE6A20B5-C42E-46BD-80FF-732CF4A8CCB2}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Multiplicacion", "Multiplicacion\Multiplicacion.pyproj", "{9A386018-D20D-4525-BD4D-532B8810EEA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EE6A20B5-C42E-46BD-80FF-732CF4A8CCB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE6A20B5-C42E-46BD-80FF-732CF4A8CCB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A386018-D20D-4525-BD4D-532B8810EEA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A386018-D20D-4525-BD4D-532B8810EEA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A61C084B-5D1A-4EA2-BCE1-3EF02E9EA90E}
+		SolutionGuid = {23816DD9-1A12-4271-88E1-6A669E7360E2}
 	EndGlobalSection
 EndGlobal
