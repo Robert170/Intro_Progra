@@ -38,4 +38,4 @@ Leon 5.8 2017B
 Noah 6.3 2018A
 Ralph 6.4 2018A
 Rickie 6.6 2018B
-Roberto 6.0 2018A
+Alan 10.0 2017A

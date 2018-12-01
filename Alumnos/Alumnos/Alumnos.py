@@ -62,7 +62,7 @@ def Revisar(Grupo):
 #Funcion para mostrar el contenido de los archivos
 	Eleccion=input("Escriba el grupo, ejemplo 2018A, que desea ver: ")
 	Eleccion=Eleccion.upper()
-
+	#Si la eleccion esta en el mapa/diccionario entrara en la condicion e imprimira a los alumnos del archivo
 	if(Eleccion in Grupo):
 		with open(Eleccion+".txt", "r") as f:
 			while f:
@@ -70,7 +70,7 @@ def Revisar(Grupo):
 				print(Estudiante)
 				if(Estudiante==""):
 					break
-
+	#Si no se encuentra saltara el mensaje y llamara de nuevo a la funcion 
 	elif(Eleccion not in Grupo):
 		print("-----Ese grupo no existe----","\n")
 		Revisar(Grupo)
@@ -99,19 +99,27 @@ def Ingresar(Grupo):
 		print("Por favor llene todo o que se le pida")
 		Ingresar(Grupo)
 	if(Nombre!=""):
-		Promedio=float(input("Escriba la calificacion:"))
-		if(Promedio==""):
-			print("Por favor llene todo o que se le pida y empiece de nuevo")
+		Nombre=Nombre.capitalize()
+		Promedio=input("Escriba la calificacion:")
+		try:
+			Promedio=float(Promedio)
+		except:
+			print("Porfavor llene correctamente todos los campos y empiece de nuevo")
 			Ingresar(Grupo)
+		if(Promedio>10):
+			print("Escriba una calificacion real")
+			Promedio=input("Escriba la calificacion:")
+			try:
+				Promedio=float(Promedio)
+			except:
+				print("Porfavor llene correctamente todos los campos y empiece de nuevo")
+				Ingresar(Grupo)
 			if(Promedio>10):
-				print("Escriba una calificacion real")
-				Promedio=float(input("Escriba la calificacion:"))
-				if(Promedio>10):
-					print("Empiece de nuevo")
-					Ingresar(Grupo)
+				print("Empiece de nuevo")
+				Ingresar(Grupo)
 	Key=input("Ingrese el grupo:")
 	if(Key==""):
-		print("Por favor llene todo o que se le pida y empiece de nuevo")
+		print("Por favor llene todo lo que se le pida y empiece de nuevo")
 		Ingresar(Grupo)
 	Key=Key.upper()
 	ListNuevo=[]
@@ -149,9 +157,9 @@ def Ingresar(Grupo):
 				f.writelines(Variables.Grupo)
 
 	
-	print("¿Quieres agregar otro alumno? pulse 1")
-	print("¿Quieres regresar al menu principal? pulse 2")
-	print("Si quiere salir presino otra tecla")
+	print("¿Quieres agregar otro alumno? pulse 1","\n")
+	print("¿Quieres regresar al menu principal? pulse 2","\n")
+	print("Si quiere salir presino otra tecla","\n")
 	Opcion=input("¿Que quiere hacer?" )
 
 	if(Opcion=="1"):
@@ -164,37 +172,126 @@ def Ingresar(Grupo):
 		return
 
 
-
+#Funcion para ordenar de forma alfabetica o por promedio un grupo
 def Ordenar(Grupo):
-	print("¿Quieres ordenar un grupo de manera alfabetica? presione 1")
-	print("¿Quieres ordenarlo por calificaciones del mayor al menor? presione 2")
+	print("¿Quieres ordenar un grupo de manera alfabetica? presione 1","\n")
+	print("¿Quieres ordenarlo por calificaciones del mayor al menor? presione 2","\n")
 	Eleccion=input("¿Que quiere hacer? ")
 	
+#Aqui se ordena de forma alffabetica
 	if(Eleccion=="1"):	
-		Lista=[]
 		Opcion=input("¿Que grupo queries ordenar? ")
 		Opcion=Opcion.upper()
 		if(Opcion in Grupo):
-			with open(Opcion+".txt", "r") as f:
-				while f:
-					Estudiante=f.readline()
-					Lista.append(Estudiante)
-					if(Estudiante==""):
-						break
+			Lista_alumno=[]
+			Estudiantes=Grupo[Opcion]
+			Respaldo=Grupo[Opcion]
+			for Elementos in Estudiantes:
+				Valor=Elementos.Nombre
+				Lista_alumno.append(Valor)
+			#Metodo burbuja para ordenar los nombres
+			for Repeticion in range(0,len(Lista_alumno)):
+				for Dato in range(Repeticion):
+					if (Lista_alumno[Dato]>Lista_alumno[Dato+1]):
+						G=Lista_alumno[Dato]
+						Lista_alumno[Dato]=Lista_alumno[Dato+1]
+						Lista_alumno[Dato+1]=G
+			for Repeticion in range(0,len(Lista_alumno)):
+				for Dato in range(Repeticion):
+					if (Lista_alumno[Dato]>Lista_alumno[Dato+1]):
+						G=Lista_alumno[Dato]
+						Lista_alumno[Dato]=Lista_alumno[Dato+1]
+						Lista_alumno[Dato+1]=G
+			for Repeticion in range(0,len(Lista_alumno)):
+				for Dato in range(Repeticion):
+					if (Lista_alumno[Dato]>Lista_alumno[Dato+1]):
+						G=Lista_alumno[Dato]
+						Lista_alumno[Dato]=Lista_alumno[Dato+1]
+						Lista_alumno[Dato+1]=G
 
+		#Abrir archivo, ingresar los alumnos de manera ordenada 
+			with open(Opcion+".txt", "w") as f:
+				for i in range(0,len(Lista_alumno)):
+					for j in range(len(Estudiantes)):
+						if(Lista_alumno[i]==Estudiantes[j].Nombre):
+							f.writelines(Estudiantes[j].Nombre+" ")
+							f.writelines(Estudiantes[j].Promedio+" ")
+							f.writelines(Estudiantes[j].Grupo+"\n")
+							Grupo[Opcion].remove(Estudiantes[j])
+							break
+		#Llenar el mapa grupo que fue vaciado previamente
+			with open(Opcion+".txt", "r") as f:
+				Datos=[]
+				while f:
+					Linea=f.readline()
+					Lista=Linea.split()
+					if(Lista==[]):
+						break
+					Datos.append(Alumno(Lista[0], Lista[1], Lista[2]))
+					if(Datos[-1].Grupo in Grupo):
+						Grupo[Datos[-1].Grupo].append(Datos[-1])
+
+			
 		elif(Opcion not in Grupo):
 			print("-----Ese grupo no existe----","\n")
 			Ordenar(Grupo)
-
+#Aqui se ordena de por promedios
 	elif(Eleccion=="2"):
 		Opcion=input("¿Que grupo queries ordenar? ")
 		Opcion=Opcion.upper()
 		if(Opcion in Grupo):
+			Lista_promedio=[]
+			Lista_promedio2=[]
 			Estudiantes=Grupo[Opcion]
-			Valor=Estudiante.Promedio
-			for Dato in Estudiantes:
-				if(Valor[Dato.Promedio]>Valor[Dato.Promedio+1]):
-					prit("h")
+			Respaldo=Grupo[Opcion]
+			for Elementos in Estudiantes:
+				Valor=Elementos.Promedio
+				Lista_promedio.append(float(Valor))
+			#Metodo burbuja para ordenar los nombres
+			for Repeticion in range(0,len(Lista_promedio)):
+				for Dato in range(Repeticion):
+					if (Lista_promedio[Dato]<Lista_promedio[Dato+1]):
+						G=Lista_promedio[Dato]
+						Lista_promedio[Dato]=Lista_promedio[Dato+1]
+						Lista_promedio[Dato+1]=G
+			for Repeticion in range(0,len(Lista_promedio)):
+				for Dato in range(Repeticion):
+					if (Lista_promedio[Dato]<Lista_promedio[Dato+1]):
+						G=Lista_promedio[Dato]
+						Lista_promedio[Dato]=Lista_promedio[Dato+1]
+						Lista_promedio[Dato+1]=G
+			for Repeticion in range(0,len(Lista_promedio)):
+				for Dato in range(Repeticion):
+					if (Lista_promedio[Dato]<Lista_promedio[Dato+1]):
+						G=Lista_promedio[Dato]
+						Lista_promedio[Dato]=Lista_promedio[Dato+1]
+						Lista_promedio[Dato+1]=G
+
+			for Elementos in Lista_promedio:
+				Lista_promedio2.append(str(Elementos))
+
+		#Abrir archivo, ingresar los alumnos de manera ordenada 
+			with open(Opcion+".txt", "w") as f:
+				for i in range(0,len(Lista_promedio2)):
+					for j in range(len(Estudiantes)):
+						if(Lista_promedio2[i]==Estudiantes[j].Promedio):
+							f.writelines(Estudiantes[j].Nombre+" ")
+							f.writelines(Estudiantes[j].Promedio+" ")
+							f.writelines(Estudiantes[j].Grupo+"\n")
+							Grupo[Opcion].remove(Estudiantes[j])
+							break
+		#Llenar el mapa grupo que fue vaciado previamente
+			with open(Opcion+".txt", "r") as f:
+				Datos=[]
+				while f:
+					Linea=f.readline()
+					Lista=Linea.split()
+					if(Lista==[]):
+						break
+					Datos.append(Alumno(Lista[0], Lista[1], Lista[2]))
+					if(Datos[-1].Grupo in Grupo):
+						Grupo[Datos[-1].Grupo].append(Datos[-1])
+
 
 		elif(Opcion not in Grupo):
 			print("-----Ese grupo no existe----","\n")
@@ -203,6 +300,20 @@ def Ordenar(Grupo):
 	else:
 		print("---Por favor elija una de las opciones que se le dan---","\n")
 		Ordenar(Grupo)
+
+	print("¿Quieres ordenar otro grupo? pulse 1","\n")
+	print("¿Quieres regresar al menu principal? pulse 2","\n")
+	print("Si quiere salir presino otra tecla","\n")
+	Opcion=input("¿Que quiere hacer?" )
+
+	if(Opcion=="1"):
+		OOrdenar(Grupo)
+		
+	elif(Opcion=="2"):
+		Menu_Principal(Grupo)
+
+	else:
+		return
 
 #mandar a llamar la funcion principal
 if __name__== "__main__":

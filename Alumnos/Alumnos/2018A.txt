@@ -8,4 +8,3 @@ Layne 6.1 2018A
 Sandra 5.9 2018A
 Noah 6.3 2018A
 Ralph 6.4 2018A
-Roberto 6.0 2018A

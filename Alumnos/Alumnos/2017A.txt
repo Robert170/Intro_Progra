@@ -3,3 +3,4 @@ Marcela 7.4 2017A
 Antonio 9.3 2017A
 Peter 8.0 2017A
 Babara 9.9 2017A
+Alan 10.0 2017A
