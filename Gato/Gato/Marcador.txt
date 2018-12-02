@@ -1,0 +1,8 @@
+Jugador1
+1
+Jugador2
+0
+Maquina
+0
+Empate
+0
